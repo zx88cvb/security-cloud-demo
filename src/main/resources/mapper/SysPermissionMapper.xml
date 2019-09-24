@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.security.securityclouddemo.mapper.SysPermissionMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.security.securityclouddemo.entity.SysPermission">
+        <id column="id" property="id"/>
+        <result column="per_code" property="perCode"/>
+        <result column="per_path" property="perPath"/>
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, per_code, per_path
+    </sql>
+
+    <!--<select id="getPerByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+        select
+            t.*,
+            up.username
+        from t_user_permission up
+            left join sys_permission t on t.per_code = up.per_code
+        where up.userName = #{userName}
+    </select>-->
+
+    <!--通过角色查询菜单信息-->
+    <select id="listPremissionByRoleId" resultMap="BaseResultMap">
+		SELECT
+			sys_permission.*
+		FROM
+			sys_permission
+		LEFT JOIN sys_role_permission ON sys_permission.id = sys_role_permission.permission_id
+		WHERE
+		sys_role_permission.role_id = #{roleId}
+
+    </select>
+</mapper>

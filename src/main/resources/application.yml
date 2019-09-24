@@ -1,0 +1,21 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: cloud-oauth2
+  redis:
+    host: localhost
+    port: 6379
+  datasource:
+    url: jdbc:mysql://192.168.1.104:3306/security-cloud?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis-plus:
+  mapper-locations: classpath:/mapper/*Mapper.xml
+  typeAliasesPackage: com.security.securityclouddemo.entity
+  configuration:
+    map-underscore-to-camel-case: true
+    # 打印SQL
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
